@@ -85,7 +85,12 @@
 /* Estilos de impresión */
 @media print {
   /* Ocultar elementos interactivos */
-  .print\\:hidden {
+  .print\\:hidden,
+  header,
+  footer,
+  button,
+  [role="button"],
+  .fixed {
     display: none !important;
   }
 
@@ -116,6 +121,22 @@
   p {
     orphans: 3;
     widows: 3;
+  }
+
+  /* FORZAR que todos los acordeones se muestren expandidos */
+  [id^="scene-content-"] {
+    display: block !important;
+    height: auto !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+  }
+
+  /* Mostrar contenido oculto de motion */
+  [style*="height: 0"],
+  [style*="opacity: 0"] {
+    height: auto !important;
+    opacity: 1 !important;
+    display: block !important;
   }
 
   /* Bloques de diálogo no se cortan */

@@ -50,6 +50,18 @@ export default function Home() {
     saveState({ expandedScenes });
   }, [expandedScenes]);
 
+  // Expandir todos los acordeones antes de imprimir
+  useEffect(() => {
+    const handleBeforePrint = () => {
+      // Expandir todas las escenas para impresión
+      const allSceneIds = script.scenes.map((scene) => scene.id);
+      setExpandedScenes(allSceneIds);
+    };
+
+    window.addEventListener("beforeprint", handleBeforePrint);
+    return () => window.removeEventListener("beforeprint", handleBeforePrint);
+  }, []);
+
   // Cambiar modo de visualización
   const handleModeChange = (mode: ViewMode) => {
     setViewMode(mode);
