@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos base */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-christmas-cream-100 text-christmas-green-800;
+  }
+
+  /* Focus visible para accesibilidad */
+  :focus-visible {
+    @apply outline-none ring-2 ring-christmas-gold-400 ring-offset-2;
+  }
+
+  /* Scrollbar personalizado */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-christmas-cream-200;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-christmas-green-400 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-christmas-green-500;
+  }
+}
+
+/* Componentes personalizados */
+@layer components {
+  /* Contenedor principal */
+  .container-main {
+    @apply max-w-6xl mx-auto px-4;
+  }
+
+  /* Botón primario */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 
+           bg-christmas-gold-500 hover:bg-christmas-gold-400 
+           text-christmas-green-800 font-bold 
+           px-6 py-3 rounded-lg 
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-christmas-gold-300 focus:ring-offset-2;
+  }
+
+  /* Botón secundario */
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 
+           bg-christmas-green-700 hover:bg-christmas-green-600 
+           text-christmas-cream-100 font-medium 
+           px-6 py-3 rounded-lg 
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-christmas-gold-400 focus:ring-offset-2;
+  }
+}
+
+/* Utilidades */
+@layer utilities {
+  /* Animación de línea */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Estilos de impresión */
+@media print {
+  /* Ocultar elementos interactivos */
+  .print\\:hidden {
+    display: none !important;
+  }
+
+  /* Forzar colores de fondo */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Reset de fondo */
+  body {
+    background: white !important;
+    color: #1a3d31 !important;
+  }
+
+  /* Páginas */
+  @page {
+    margin: 1.5cm;
+    size: letter;
+  }
+
+  /* Títulos no se cortan */
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+  }
+
+  /* Párrafos no huérfanos */
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Bloques de diálogo no se cortan */
+  article {
+    page-break-inside: avoid;
+  }
+
+  /* Mostrar todos los acordeones expandidos */
+  [aria-expanded="false"] + div {
+    display: block !important;
+    height: auto !important;
+    opacity: 1 !important;
+  }
+
+  /* Ajustar tamaños */
+  .font-serif {
+    font-family: Georgia, "Times New Roman", serif !important;
+  }
+
+  /* Reducir espaciados */
+  section {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Skip link para accesibilidad */
+.skip-link {
+  @apply absolute -top-10 left-4 z-[100] 
+         bg-christmas-gold-500 text-christmas-green-800 
+         px-4 py-2 rounded-b-lg 
+         font-medium 
+         transition-all;
+}
+
+.skip-link:focus {
+  @apply top-0;
+}
