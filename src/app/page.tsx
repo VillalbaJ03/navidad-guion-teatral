@@ -136,6 +136,18 @@ export default function Home() {
     setViewMode("script");
   }, []);
 
+  // Función para imprimir - expande todo primero
+  const handlePrint = useCallback(() => {
+    // Expandir todas las escenas
+    const allSceneIds = script.scenes.map((scene) => scene.id);
+    setExpandedScenes(allSceneIds);
+    
+    // Esperar a que React re-renderice y luego imprimir
+    setTimeout(() => {
+      window.print();
+    }, 500);
+  }, []);
+
   // Scroll a contenido del guion
   const scrollToScript = useCallback(() => {
     // Expandir la primera escena
@@ -218,7 +230,7 @@ export default function Home() {
                 />
 
                 {/* Barra de exportación */}
-                <ExportBar script={script} />
+                <ExportBar script={script} onPrint={handlePrint} />
               </>
             ) : viewMode === "rehearsal" ? (
               <RehearsalMode

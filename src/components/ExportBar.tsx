@@ -9,13 +9,14 @@ import {
   FileText
 } from "lucide-react";
 import { Script } from "@/types";
-import { generateScriptText, copyToClipboard, downloadAsText, printScript } from "@/utils/export";
+import { generateScriptText, copyToClipboard, downloadAsText } from "@/utils/export";
 
 interface ExportBarProps {
   script: Script;
+  onPrint?: () => void;
 }
 
-export default function ExportBar({ script }: ExportBarProps) {
+export default function ExportBar({ script, onPrint }: ExportBarProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -33,7 +34,11 @@ export default function ExportBar({ script }: ExportBarProps) {
   };
 
   const handlePrint = () => {
-    printScript();
+    if (onPrint) {
+      onPrint();
+    } else {
+      window.print();
+    }
   };
 
   return (
