@@ -150,7 +150,7 @@ export default function SceneAccordion({
                                 dialogue={content}
                                 searchQuery={searchQuery}
                                 isHighlighted={highlightCharacter === content.characterId}
-                                isDimmed={highlightCharacter !== null && highlightCharacter !== content.characterId}
+                                isDimmed={!!highlightCharacter && highlightCharacter !== content.characterId}
                               />
                             );
                           }
